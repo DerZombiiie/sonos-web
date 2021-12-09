@@ -712,8 +712,10 @@ class SonosNetwork {
     if (!zone) { return null; }
     const queue = await zone.getQueue();
     if (queue) {
-      queue.items.forEach((track, index) => { queue.items[index].queuePosition = index + 1; });
-      return queue.items;
+      if (queue.items) {
+        queue.items.forEach((track, index) => { queue.items[index].queuePosition = index + 1; });
+        return queue.items;
+      }
     }
     return null;
   }
